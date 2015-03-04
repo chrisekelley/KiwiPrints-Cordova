@@ -80,6 +80,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.plugin.version/www/version.js",
+        "id": "org.apache.cordova.plugin.version.version",
+        "clobbers": [
+            "Version"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -238,6 +245,7 @@ module.exports.metadata =
     "com.scispike.logger": "0.0.2",
     "com.borismus.webintent": "1.0.0",
     "org.rti.kidsthrive.secugen": "0.0.1",
+    "org.apache.cordova.plugin.version": "0.2.0",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA
