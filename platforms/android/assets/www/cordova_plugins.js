@@ -87,6 +87,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
+        "clobbers": [
+            "plugin.notification.local"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -246,6 +253,7 @@ module.exports.metadata =
     "com.borismus.webintent": "1.0.0",
     "org.rti.kidsthrive.secugen": "0.0.1",
     "org.apache.cordova.plugin.version": "0.2.0",
+    "de.appplant.cordova.plugin.local-notification": "0.7.8",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA
