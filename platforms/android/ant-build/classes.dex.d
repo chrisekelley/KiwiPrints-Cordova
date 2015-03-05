@@ -2,6 +2,16 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/borismus/webintent/WebIntent.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/scispike/logger/Logger$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/scispike/logger/Logger.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$1.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$2.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$3.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$4.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$5.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Options.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Receiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ReceiverActivity.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Restore.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$2$1.class \

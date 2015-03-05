@@ -478,6 +478,18 @@ class Router extends Backbone.Router
     Backbone.history.start()
     if navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
       CoconutUtils.checkVersion()
+      window.plugin.notification.local.add
+        id:         "KiwiAppUpdate"  # A unique id of the notification
+        date:       _60_seconds_from_now    # This expects a date object
+        message:    "There is an update to KiwiPrints Demo"  # The message that is displayed
+        title:      "KiwiPrints Demo"  # The title of the message
+        repeat:     "minutely"  # Either 'secondly', 'minutely', 'hourly', 'daily', 'weekly', 'monthly' or 'yearly'
+        badge:      Number  # Displays number badge to notification
+        sound:      String  # A sound to be played
+        json:       String  # Data to be passed through the notification
+        autoCancel: true # Setting this flag and the notification is automatically cancelled when the user clicks it
+        ongoing:    false # Prevent clearing of notification (Android only)
+      , callback, scope
 #      CoconutUtils.check_network()
 
 $(() =>

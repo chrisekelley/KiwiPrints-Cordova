@@ -36,6 +36,11 @@
     <feature name="LocalNotification">
         <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
     </feature>
+    <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
+    <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
+    <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     <name>KiwiPrintsDemo</name>
     <description>
         A data collection application.
@@ -46,4 +51,5 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="LoadUrlTimeoutValue" value="60000" />
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
 </widget>

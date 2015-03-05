@@ -3,9 +3,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-hdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-hdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-ldpi/screen.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-mdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-mdpi/screen.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-land-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-ldpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-mdpi/icon.png \
@@ -15,6 +13,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-port-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xxhdpi/icon.png \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xxxhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/values/strings.xml \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/xml/config.xml \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/xml/device_filter.xml \
@@ -22,9 +21,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-hdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-hdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-ldpi/screen.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-mdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-land-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-ldpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-mdpi/icon.png \
@@ -34,6 +31,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xxhdpi/icon.png \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xxxhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/_where-is-www.txt \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/api.coffee \
@@ -1156,6 +1154,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/old_bower_components/underscore.string/test/test_underscore/vendor/qunit.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.borismus.webintent \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.scispike.logger \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.dialogs \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.file \
@@ -1168,6 +1167,8 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.borismus.webintent/www/webintent.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.scispike.logger/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.scispike.logger/www/logger.js \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.dialogs/www \

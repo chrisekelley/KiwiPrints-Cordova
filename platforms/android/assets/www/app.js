@@ -667,7 +667,19 @@ Router = (function(_super) {
     Coconut.syncView.sync.replicateFromServer();
     Backbone.history.start();
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-      return CoconutUtils.checkVersion();
+      CoconutUtils.checkVersion();
+      return window.plugin.notification.local.add({
+        id: "KiwiAppUpdate",
+        date: _60_seconds_from_now,
+        message: "There is an update to KiwiPrints Demo",
+        title: "KiwiPrints Demo",
+        repeat: "minutely",
+        badge: Number,
+        sound: String,
+        json: String,
+        autoCancel: true,
+        ongoing: false
+      }, callback, scope);
     }
   };
 

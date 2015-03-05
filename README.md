@@ -36,6 +36,7 @@ cordova plugin add com.scispike.logger
 cordova plugin add org.apache.cordova.file
 cordova plugin add https://github.com/Initsogar/cordova-webintent.git
 cordova plugin add /Users/chrisk/source/SecugenPlugin 
+cordova plugin add de.appplant.cordova.plugin.local-notification && cordova prepare
 
 ## Create a soft link to the coconut code
 
@@ -102,5 +103,11 @@ The platforms/android/bakeapp.sh script is also useful during development when r
 adb logcat | grep `adb shell ps | grep org.rti.kidsthrive | cut -c10-15`
 
 kudos: http://stackoverflow.com/a/9869609
+
+## Creating icons
+
+https://github.com/AlexDisler/cordova-icon
+
+Save icon.png in project root. Save as 192x192. Run cordova-icon. 
 
 
