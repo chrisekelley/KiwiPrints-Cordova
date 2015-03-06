@@ -667,19 +667,15 @@ Router = (function(_super) {
     Coconut.syncView.sync.replicateFromServer();
     Backbone.history.start();
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-      CoconutUtils.checkVersion();
-      return window.plugin.notification.local.add({
-        id: "KiwiAppUpdate",
-        date: _60_seconds_from_now,
-        message: "There is an update to KiwiPrints Demo",
-        title: "KiwiPrints Demo",
-        repeat: "minutely",
-        badge: Number,
-        sound: String,
-        json: String,
-        autoCancel: true,
-        ongoing: false
-      }, callback, scope);
+      CoconutUtils.scheduleCheckVersion();
+      cordova.plugins.notification.local.on("trigger", function(notification) {
+        console.log("triggered: " + notification.id);
+        return CoconutUtils.checkVersion();
+      });
+      return cordova.plugins.notification.local.on("click", function(notification) {
+        console.log("click: " + notification.id);
+        return CoconutUtils.scheduleCheckVersion();
+      });
     }
   };
 

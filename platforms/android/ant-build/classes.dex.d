@@ -2,6 +2,8 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/borismus/webintent/WebIntent.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/scispike/logger/Logger$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/com/scispike/logger/Logger.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ClearReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ClickActivity.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$2.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$3.class \
@@ -12,6 +14,21 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Receiver.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ReceiverActivity.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Restore.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/RestoreReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/TriggerReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/AbstractClearReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/AbstractClickActivity.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/AbstractRestoreReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/AbstractTriggerReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/AssetUtil.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/Builder.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/ClearReceiver.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/ClickActivity.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/Manager.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/Notification$Type.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/Notification.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/Options.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/de/appplant/cordova/plugin/notification/TriggerReceiver.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$2$1.class \
@@ -272,3 +289,4 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/dexedLibs/commons-io-2.4-0848a4ae922fd444aca10b23c733db0d.jar \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/dexedLibs/httpcore-4.3.2-55a0532cc26b9f2a89bf79754760f565.jar \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/dexedLibs/httpmime-4.3.4-285c0aed53534279d8b465daebaa5df5.jar \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/dexedLibs/android-support-v4-bd4a166f2eb560cfc74c8b7687c13cb4.jar \
