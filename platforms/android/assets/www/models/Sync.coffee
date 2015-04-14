@@ -230,21 +230,14 @@ class Sync extends Backbone.Model
   replicateFromServer: (options) ->
     options = {} if !options
     filter = (doc) ->
-      if doc._id != "_design/by_clientId" && doc._id != "_design/by_serviceUuid" && doc._id != "_design/by_AdminRegistration" \
-        && doc._id != "_design/by_DocsDate" && doc._id != "_design/by_AdminDate" && doc._id != "_design/by_Stats" \
-        && doc._id != "SyncLog" && doc._id != "coconut.config" && doc._id != "coconut.config.local" && doc._id != "version" \
-        && doc.noClientPush != "true"
+      if doc._id != "_design/by_clientId" && doc._id != "_design/by_serviceUuid" && doc._id != "SyncLog" && doc._id != "coconut.config" && doc._id != "coconut.config.local" && doc._id != "version" && doc.noClientPush != "true"
           return doc
     opts =
       live:true
       filter:filter
-#      batches_limit:1
       withCredentials:true
-#      auth:
-#        username:account.username
-#        password:account.password
       complete: (result) ->
-        if typeof result != 'undefined' && result.ok
+        if typeof result != 'undefined' && result != null && result.ok
           Coconut.debug "replicateFromServer - onComplete: Replication is fine. "
         else
           Coconut.debug "replicateFromServer - onComplete: Replication message: " + JSON.stringify result
@@ -255,7 +248,9 @@ class Sync extends Backbone.Model
     Backbone.sync.defaults.db.replicate.from(Coconut.config.cloud_url_with_credentials(), options).on('uptodate', (result) ->
       if typeof result != 'undefined' && result.ok
         console.log "uptodate: Replication is fine. "
-        options.success()
+        options.complete()
+        if typeof options.success != 'undefined'
+          options.success()
       else
         console.log "uptodate: Replication error: " + JSON.stringify result).on('change', (info)->
           Coconut.debug "Change: " + JSON.stringify info
@@ -271,7 +266,7 @@ class Sync extends Backbone.Model
         live:true
         withCredentials:true
         complete: (result) ->
-            if typeof result != 'undefined' && result.ok
+            if typeof result != 'undefined' && result != null && result.ok
               Coconut.debug "replicateFromServer - onComplete: Replication is fine. "
             else
               Coconut.debug "replicateFromServer - onComplete: Replication message: " + JSON.stringify result
@@ -282,13 +277,41 @@ class Sync extends Backbone.Model
     Backbone.sync.defaults.db.replicate.from(Coconut.config.coconut_forms_url_with_credentials(), options).on('uptodate', (result) ->
       if typeof result != 'undefined' && result.ok
         console.log "uptodate: Form Replication is fine. "
-        options.success()
+        Coconut.syncView.sync.populateForms()
+        options.complete()
+        if typeof options.success != 'undefined'
+          options.success()
       else
         console.log "uptodate: Form Replication error: " + JSON.stringify result).on('change', (info)->
           Coconut.debug "Form Replication Change: " + JSON.stringify info
         ).on('complete', (info)->
           Coconut.debug "Form Replication Complete: " + JSON.stringify info
         )
+
+  populateForms: () ->
+    model = new Backbone.Model
+      _id: Coconut.config.coconut_forms_design_doc()
+    model.fetch
+      options:
+        get:
+          attachments: true
+    .then (result) ->
+#      console.log("result: " + JSON.stringify((result)))
+      for key of result._attachments
+        obj = result._attachments[key];
+#        decodedData = window.atob(obj.data);
+        decodedData = decodeURIComponent(escape(window.atob( obj.data )));
+#        console.log("key: " + key + " decodedData: " + JSON.stringify((decodedData)))
+        obj = JSON.parse  decodedData
+        nuKey = key.replace(".json","")
+        model = new Backbone.Model
+          _id: nuKey
+        model.save obj,
+          success: (model) =>
+            console.log 'Saving... ' + nuKey
+          error: (model, resp) =>
+            console.log 'Error: ' + JSON.stringify(model) + " resp: " + resp;
+
 
   replicate: (messageId)=>
     @replicateToServer
@@ -328,7 +351,7 @@ class Sync extends Backbone.Model
 #        username:account.username
 #        password:account.password
       complete: (result) ->
-        if typeof result != 'undefined' && result.ok
+        if typeof result != 'undefined' && result != null && result.ok
           Coconut.debug "replicateToServer - onComplete: Replication is fine. "
         else
           Coconut.debug "replicateToServer - onComplete: Replication message: " + JSON.stringify result
@@ -339,7 +362,9 @@ class Sync extends Backbone.Model
     Backbone.sync.defaults.db.replicate.to(Coconut.config.cloud_url_with_credentials(), options).on('uptodate', (result) ->
       if typeof result != 'undefined' && result.ok
         console.log "uptodate: Replication is fine. "
-        options.success()
+        options.complete()
+        if typeof options.success != 'undefined'
+          options.success()
       else
         console.log "uptodate: Replication error: " + JSON.stringify result).on('change', (info)->
       Coconut.debug "Change: " + JSON.stringify info

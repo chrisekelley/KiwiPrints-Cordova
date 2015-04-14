@@ -185,29 +185,3 @@ Controller =
         reportLayout.reportListingRegion.show(new ReportCompositeView viewOptions)
       error: (model, err, cb) ->
               console.log JSON.stringify err
-
-
-  displayStats: () ->
-    adminId = Coconut.currentAdmin.get("_id")
-#    console.log("adminId: " + adminId)
-    viewOptions = {}
-    results = new StatsCollection
-    results.fetch
-      fetch: 'query',
-      options:
-        query:
-          fun: 'by_Stats',
-          reduce: true,
-          group: true
-      success: =>
-        viewOptions =
-          collection : results
-          template: JST["_attachments/templates/StatsView.handlebars"]
-          childView: StatsItemView,
-        reportLayout = new ReportLayout();
-        Coconut.mainRegion.show reportLayout
-        reportHeaderView = new StatsHeaderDashboardView
-        reportLayout.reportHeaderRegion.show reportHeaderView
-        reportLayout.reportListingRegion.show(new ReportCompositeView viewOptions)
-      error: (model, err, cb) ->
-              console.log JSON.stringify err

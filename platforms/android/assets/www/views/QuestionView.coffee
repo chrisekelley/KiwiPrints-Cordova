@@ -13,6 +13,7 @@ window.SkipTheseWhen = ( argQuestions, result ) ->
 
 window.ResultOfQuestion = ( name ) -> return window.getValueCache[name]?() || null
 
+
 class QuestionView extends Backbone.View
 
   initialize: ->
@@ -21,17 +22,17 @@ class QuestionView extends Backbone.View
 
   el: '#content'
 
-  triggerChangeIn: ( names ) ->
+  triggerChangeIn: ( names, type ) ->
 
     for name in names
       elements = []
       elements.push window.questionCache[name].find("input, select, textarea, img")
       $(elements).each (index, element) =>
         event = target : element
-        @actionOnChange event
+        @actionOnChange event,type
 
   render: =>
-    formNameText = @model.id
+    formNameText = @model.safeLabel()
     i18nFormNameText = polyglot.t(formNameText)
     if i18nFormNameText
         formNameText = i18nFormNameText
@@ -131,16 +132,24 @@ class QuestionView extends Backbone.View
     # skipperList is a list of questions that use skip logic in their action on change events
     skipperList = []
 
+    # onChangeList is a list of questions that have onChange events different from skip logic - they have event_on_change properties
+    onChangeList = []
+
     $(@model.get("questions")).each (index, question) =>
 
       # remember which questions have skip logic in their actionOnChange code
       skipperList.push(question.safeLabel()) if question.actionOnChange().match(/skip/i)
+
+      # remember which questions have onchange  in their actionOnChange code
+      onChangeList.push(question.safeLabel()) if question.eventOnChange() != ""
 
       if question.get("action_on_questions_loaded")? and question.get("action_on_questions_loaded") isnt ""
         CoffeeScript.eval question.get "action_on_questions_loaded"
 
     # Trigger a change event for each of the questions that contain skip logic in their actionOnChange code
     @triggerChangeIn skipperList
+    # Trigger a change event for each of the questions that contain eventOnChange code
+    @triggerChangeIn onChangeList,"eventOnChange"
 
 #    @$el.find("input[type=text],input[type=number],input[type='autocomplete from previous entries'],input[type='autocomplete from list'],input[type='autocomplete from code']").textinput()
 #    @$el.find('input[type=checkbox]').checkboxradio()
@@ -217,6 +226,18 @@ class QuestionView extends Backbone.View
     # Don't duplicate events unless 1 second later
     #
     eventStamp = $target.attr("id")
+    name = $target.attr("name")
+#    question = @model.get("questions")[name]
+#    if typeof question != 'undefined'
+#      onChangeFunction = question.get("onChangeFunction")
+#      if typeof onChangeFunction != 'undefined'
+#        onChangeFunction = this.model.get("onChangeFunction")
+#        tmpFunc = new Function(onChangeFunction);
+#        tmpFunc(name);
+
+    eventOnChange = $target.attr("data-event_on_change")
+    if typeof eventOnChange != 'undefined'
+      @actionOnChange(event,'eventOnChange')
 
     return if eventStamp == @oldStamp and (new Date()).getTime() < @throttleTime + 1000
 
@@ -410,7 +431,7 @@ class QuestionView extends Backbone.View
 
   # takes an event as an argument, and looks for an input, select or textarea inside the target of that event.
   # Runs the change code associated with that question.
-  actionOnChange: (event) ->
+  actionOnChange: (event, type) ->
 
     nodeName = $(event.target).get(0).nodeName
     $target =
@@ -424,21 +445,39 @@ class QuestionView extends Backbone.View
 
     name = $target.attr("name")
     $divQuestion = $(".question [data-question-name=#{name}]")
-    code = $divQuestion.attr("data-action_on_change")
+    if typeof type != 'undefined' && type == 'eventOnChange'
+      code = $divQuestion.attr("data-event_on_change")
+    else
+      code = $divQuestion.attr("data-action_on_change")
     try
       value = ResultOfQuestion(name)
     catch error
       return if error == "invisible reference"
 
     return if code == "" or not code?
-    code = "(value) -> #{code}"
-    try
-      newFunction = CoffeeScript.eval.apply(@, [code])
-      newFunction(value)
-    catch error
-      name = ((/function (.{1,})\(/).exec(error.constructor.toString())[1])
-      message = error.message
-      alert "Action on change error in question #{$divQuestion.attr('data-question-id') || $divQuestion.attr("id")}\n\n#{name}\n\n#{message}"
+    if typeof type != 'undefined' && type == 'eventOnChange'
+      try
+        $target = $(event.target)
+#        code = "function($target) = #{code}"
+        code = "function(target) = { KiwiUtils.toggleAcceptedSurgery(target) }"
+        code = "return KiwiUtils.toggleAcceptedSurgery(target)"
+        newFunction = new Function("target", code);
+#        newFunction.target = $target
+#        newFunction.apply(@, [$target])
+        newFunction($target)
+      catch error
+        name = ((/function (.{1,})\(/).exec(error.constructor.toString())[1])
+        message = error.message
+        alert "Action on change error in question #{$divQuestion.attr('data-question-id') || $divQuestion.attr("id")}\n\n#{name}\n\n#{message}"
+    else
+      code = "(value) -> #{code}"
+      try
+        newFunction = CoffeeScript.eval.apply(@, [code])
+        newFunction(value)
+      catch error
+        name = ((/function (.{1,})\(/).exec(error.constructor.toString())[1])
+        message = error.message
+        alert "Action on change error in question #{$divQuestion.attr('data-question-id') || $divQuestion.attr("id")}\n\n#{name}\n\n#{message}"
 
   updateSkipLogic: ->
 
@@ -567,16 +606,16 @@ class QuestionView extends Backbone.View
         if groupId?
           name = "group.#{groupId}.#{name}"
         if question.type() == 'header'
-          div = "<div class='question #{question.type?() or ''}'>"
+          div = "<div id='#{question_id}#{name}Div' class='question #{question.type?() or ''}'>"
           label = "<h2>#{labelText} </h2>"
         else if question.type() == 'subheader'
-          div = "<div class='question #{question.type?() or ''}'>"
+          div = "<div id='#{question_id}#{name}Div' class='question #{question.type?() or ''}'>"
           label = "<h3>#{labelText} </h3>"
         else if question.type() == 'spacer'
-          div = "<div class='question #{question.type?() or ''}'>"
+          div = "<div id='#{question_id}#{name}Div' class='question #{question.type?() or ''}'>"
           label = "<p>&nbsp</p>"
         else if question.type() == 'instructions'
-          div = "<div class='question #{question.type?() or ''}'>"
+          div = "<div id='#{question_id}#{name}Div' class='question #{question.type?() or ''}'>"
           label = "<p>#{labelText} </p>"
         else
           div = "<div
@@ -586,11 +625,13 @@ class QuestionView extends Backbone.View
           else
             ""
           }
+          id='#{question_id}#{name}Div'
           data-required='#{question.required()}'
           class='question #{question.type?() or ''}'
           data-question-name='#{name}'
           data-question-id='#{question_id}'
           data-action_on_change='#{_.escape(question.actionOnChange())}'
+          data-event_on_change='#{_.escape(question.eventOnChange())}'
 
           >"
 #          label = "<label type='#{question.type()}' for='#{question_id}'>#{question.label()} <span></span></label>"
@@ -602,8 +643,8 @@ class QuestionView extends Backbone.View
 
           #{
             switch question.type()
-              when "textarea"
-                ""
+#              when "textarea"
+#                ""
               when "checkbox"
                 ""
               else
@@ -614,7 +655,8 @@ class QuestionView extends Backbone.View
           #{
             switch question.type()
               when "textarea"
-                "<div class='form-group'><input name='#{name}' class='form-control' type='text' id='#{question_id}' value='#{_.escape(question.value())}'></input></div>"
+                "<div class='form-group'><textarea class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' placeholder='" + polyglot.t('Enter') + "&nbsp;" +  i18nLabelText + "'>" + "</textarea></div>"
+
 # Selects look lame - use radio buttons instead or autocomplete if long list
 #              when "select"
 #                "
@@ -625,20 +667,34 @@ class QuestionView extends Backbone.View
 #                  }
 #                  </select>
 #                "
+
               when "select"
                 if @readonly
                   question.value()
                 else
-                  html = "<div class='form-group'><select name='#{name}' id='#{question_id}' class='form-control'><option value=''> -- " + polyglot.t("SelectOne") + " -- </option>"
+                  html = "<div class='form-group'><select name='#{name}' id='#{question_id}' class='form-control' data-event_on_change='#{_.escape(question.eventOnChange())}'><option value=''> -- " + polyglot.t("SelectOne") + " -- </option>"
                   for option, index in question.get("select-options").split(/, */)
 #                    html += "<option name='#{name}' id='#{question_id}-#{index}' value='#{option}'>#{option}</option>"
                      optionText = option
                      i18nKey = question.get('safeLabel') + "::" + optionText
                      i18nOptionText = polyglot.t(i18nKey)
-                     if i18nOptionText !=null
+                     if i18nOptionText != i18nKey
                         optionText = i18nOptionText
 #                     console.log "labelText: " + labelText + " optionText: " + optionText
                      html += "<option name='#{name}' id='#{question_id}-#{index}' value='#{option}'>#{optionText}</option>"
+                  html += "</select></div>"
+              when "selectDistrict"
+                if @readonly
+                  question.value()
+                else
+                  html = "<div class='form-group'><select name='#{name}' id='#{question_id}' class='form-control'><option value=''> -- " + polyglot.t("SelectOne") + " -- </option>"
+                  districts = KiwiUtils.districts
+                  index = 0
+                  for own key, phrase of districts
+                    if key != '_id' && key != '_rev'
+                      index++
+                      optionText = phrase
+                      html += "<option name='#{key}' id='#{question_id}-#{index}' value='#{option}'>#{optionText}</option>"
                   html += "</select></div>"
               when "radio"
                 if @readonly
@@ -717,36 +773,15 @@ class QuestionView extends Backbone.View
                 ""
               when "instructions"
                 "<p>#{text}</p>"
-              when "date-only"
-                "<div class='form-group'>\n
-                  <div class='input-group date' id='datetimepicker1'>\n
-                    <input type='text' class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' data-date-showToday='false' placeholder='" + polyglot.t('Enter') + " #{i18nLabelText}'/>\n
-                    <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
-                    </span>\n
-                  </div>\n
-                </div>\n
-                 <script type=\"text/javascript\">\n
-                  $(function () {\n
-                  $('##{question_id}').datetimepicker({\n
-                                    pickTime: false,\n
-                                    showToday: false,\n
-                                    language: 'pt'\n
-                                });\n
-                });\n
-                </script>\n"
-              when "date-time"
+              when "date"
                 "<div class='form-group'>
-                  <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' placeholder='" + polyglot.t('Enter') + " #{i18nLabelText}'/>
-                    <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
-                    </span>
-                  </div>
-                </div>
-                 <script type=\"text/javascript\">
-                  $(function () {
-                  $('##{question_id}').datetimepicker({\nlanguage: 'pt'\n});
-                });
-                </script>"
+                    <input type='date' class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' placeholder='" + polyglot.t('Enter') + " #{i18nLabelText}'/>\n
+                </div>"
+
+              when "time"
+                "<div class='form-group'>
+                    <input type='time' class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' placeholder='" + polyglot.t('Enter') + " #{i18nLabelText}'/>
+                </div>"
               else
 #                "<input name='#{name}' id='#{question_id}' type='#{question.type()}' value='#{question.value()}'></input>"
                  "<div class='form-group'><input type='text' class='form-control' name='#{name}' id='#{question_id}' value='#{question.value()}' placeholder='" + polyglot.t('Enter') + " #{i18nLabelText}'></div>"

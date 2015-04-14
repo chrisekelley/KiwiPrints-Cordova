@@ -1,14 +1,7 @@
 UserFormView = Backbone.Marionette.ItemView.extend
-    
-    # Add the attributes JQM expects to the view's element
-#    attributes: ->
-#      "data-url": "#displayReportMenu"
-#      "data-role": "page"
-#      id: "userMenu"
-#      class: "app"
 
     template: JST["_attachments/templates/PostAdminRegistrationMenu.handlebars"]
-    
+
     #        el: "#userMenu",
     className: "app ui-content" # this class will be added to the wrapping div when you render the view
     triggers:
@@ -20,17 +13,13 @@ UserFormView = Backbone.Marionette.ItemView.extend
     events:
       "click #registrationLink": "submitRegistration"
       "click #newReportLink": "newReportLink"
-      "click #PostOperativeFollowup": "postOperativeFollowup"
-      "click #FirstVisit": "firstVisit"
-      "click #SecondVisit": "secondVisit"
+      "click #PostOperativeFollowup": "postOperativeFollowup",
+      "click #TrichiasisSurgery": "trichiasisSurgery"
+      "click #PostOperativeEpilation": "postOperativeEpilation"
+      "click #PostOperativeFollowup_1day": "postOperativeFollowup_1day"
+      "click #PostOperativeFollowup_7_14_days": "postOperativeFollowup_7_14_days"
+      "click #PostOperativeFollowup_3_6_months": "postOperativeFollowup_3_6_months"
 
-    initialize: ->
-
-    
-    #            $('input[type=checkbox]').button();
-    #            $(function() {
-    #                $(":checkbox").checkbox();
-    #            });
     submitRegistration: ->
       console.log "submitRegistration"
       App.trigger "userScan"
@@ -52,28 +41,35 @@ UserFormView = Backbone.Marionette.ItemView.extend
       return
 
     trichiasisSurgery: ->
-      console.log("trichiasisSurgery");
-      Coconut.router.navigate("#new/result/Trichiasis%20Surgery",true)
+      console.log "trichiasisSurgery"
+      Coconut.router.navigate "#new/result/Trichiasis%20Surgery",true
+      return
 
     postOperativeFollowup: ->
-      console.log("postOperativeFollowup");
-      Coconut.router.navigate("#new/result/Post-Operative%20Followup",true)
+      console.log "postOperativeFollowup"
+      Coconut.router.navigate "#new/result/Post-Operative%20Followup",true
+      return
 
-    trichiasisSurgery: ->
-      console.log("trichiasisSurgery");
-      Coconut.router.navigate("#new/result/Trichiasis%20Surgery",true)
+    postOperativeEpilation: ->
+      console.log "postOperativeEpilation"
+      Coconut.router.navigate "#new/result/PostOperativeEpilation",true
+      return
 
-    postOperativeFollowup: ->
-      console.log("postOperativeFollowup");
-      Coconut.router.navigate("#new/result/Post-Operative%20Followup",true)
+    postOperativeFollowup_1day: ->
+      console.log "postOperativeFollowup_1day"
+      Coconut.router.navigate "#new/result/PostOperativeFollowup_1day",true
+      return
 
-    firstVisit: ->
-      console.log("firstVisit");
-      Coconut.router.navigate("#new/result/FirstVisit",true)
+    postOperativeFollowup_7_14_days: ->
+      console.log "postOperativeFollowup_7_14_days"
+      Coconut.router.navigate "#new/result/PostOperativeFollowup_7_14_days",true
+      return
 
-    secondVisit: ->
-      console.log("secondVisit");
-      Coconut.router.navigate("#new/result/SecondVisit",true)
+    postOperativeFollowup_3_6_months: ->
+      console.log "postOperativeFollowup_3_6_months"
+      Coconut.router.navigate "#new/result/PostOperativeFollowup_3_6_months",true
+      return
+
 
 
 #        ui: {

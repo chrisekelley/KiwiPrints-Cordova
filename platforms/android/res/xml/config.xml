@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="5" id="org.rti.kiwi" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="6" id="org.rti.kiwi.tt" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -41,7 +41,7 @@
     <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
     <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-    <name>KiwiPrintsDemo</name>
+    <name>KiwiPrintsTT</name>
     <description>
         A data collection application.
     </description>

@@ -42,7 +42,6 @@ class Router extends Backbone.Router
     "loadTestClient": "loadTestClient"
     "enroll": "enroll"
     "enroll/:user": "enroll"
-    "displayStats": "displayStats"
     "": "displayAdminScanner"
 
   route: (route, name, callback) ->
@@ -212,11 +211,6 @@ class Router extends Backbone.Router
     @userLoggedIn
       success: ->
         Coconut.Controller.displayAdminRecords()
-
-  displayStats: ->
-    @userLoggedIn
-      success: ->
-        Coconut.Controller.displayStats()
 
   loadTestClient: ->
     @userLoggedIn
@@ -444,7 +438,7 @@ class Router extends Backbone.Router
           langChoice = user.get('langChoice')
           console.log("langChoice from doc: " + user.get('langChoice'))
           if !langChoice
-            langChoice = 'en'
+            langChoice = 'pt'
             user.set('langChoice',langChoice)
             user.save null,
               success: ->
@@ -472,18 +466,13 @@ class Router extends Backbone.Router
     Coconut.questionView = new QuestionView()
     Coconut.menuView = new MenuView()
     Coconut.syncView = new SettingsView()
+    KiwiUtils.fetchDistricts()
     Coconut.syncView.sync.replicateToServer()
     Coconut.syncView.sync.replicateFromServer()
     #        Coconut.syncView.update()
     Backbone.history.start()
     if navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
-      CoconutUtils.scheduleCheckVersion()
-      cordova.plugins.notification.local.on "trigger", (notification) ->
-        console.log("triggered: " + notification.id);
-        CoconutUtils.checkVersion()
-      cordova.plugins.notification.local.on "click", (notification) ->
-        console.log("click: " + notification.id);
-        CoconutUtils.scheduleCheckVersion()
+      CoconutUtils.checkVersion()
 #      CoconutUtils.check_network()
 
 $(() =>
@@ -587,11 +576,6 @@ $(() =>
       Coconut.router.navigate "displayAllRecords"
       Coconut.Controller.displayAdminRecords()
 
-    Coconut.on "displayStats", ->
-      console.log("displayStats triggered")
-      Coconut.router.navigate "displayStats"
-      Coconut.Controller.displayStats()
-
     Coconut.on "displaySync", ->
       Coconut.router.navigate "sync"
       Coconut.Controller.displaySync()
@@ -599,7 +583,7 @@ $(() =>
     Coconut.router.bootstrapApp()
 
     Coconut.debug = (string) ->
-      console.log string
+#      console.log string
       Coconut.replicationLog = "" unless Coconut.replicationLog?
       Coconut.replicationLog += "<br/>"
       Coconut.replicationLog += string
