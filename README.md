@@ -100,7 +100,7 @@ The platforms/android/bakeapp.sh script is also useful during development when r
 
 ## Viewing logs
 
-adb logcat | grep `adb shell ps | grep org.rti.kidsthrive | cut -c10-15`
+adb logcat | grep `adb shell ps | grep org.rti.kiwi.tt | cut -c10-15`
 
 kudos: http://stackoverflow.com/a/9869609
 
