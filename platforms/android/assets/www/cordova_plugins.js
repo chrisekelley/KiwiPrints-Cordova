@@ -95,6 +95,29 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Core",
+        "clobbers": [
+            "cordova.plugins.notification.local.core",
+            "plugin.notification.local.core"
+        ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification.Util",
+        "merges": [
+            "cordova.plugins.notification.local.core",
+            "plugin.notification.local.core"
+        ]
+    },
+    {
+        "file": "plugins/org.iwanjunaid.pman/www/pman.js",
+        "id": "org.iwanjunaid.pman.pman",
+        "clobbers": [
+            "pman"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -254,7 +277,8 @@ module.exports.metadata =
     "com.borismus.webintent": "1.0.0",
     "org.rti.kidsthrive.secugen": "0.0.1",
     "org.apache.cordova.plugin.version": "0.2.0",
-    "de.appplant.cordova.plugin.local-notification": "0.8.0",
+    "de.appplant.cordova.plugin.local-notification": "0.8.2dev",
+    "org.iwanjunaid.pman": "0.1.2",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA

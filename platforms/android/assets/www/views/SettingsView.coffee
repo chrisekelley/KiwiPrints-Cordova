@@ -8,6 +8,9 @@ class SettingsView extends Backbone.View
           langChoice = user.get('langChoice')
           this.langChoice = langChoice
           console.log("langChoice from doc: " + langChoice)
+    if typeof Coconut.version_code == 'undefined'
+      if Coconut.checkDevice() == true
+        CoconutUtils.checkVersion()
   el: '#content'
   langChoice:''
 

@@ -47,44 +47,93 @@ CoconutUtils.refreshChart = function (id, name) {
 
 //window.onload = loadCascadedSelects;
 
+CoconutUtils.scheduleCheckVersion = function() {
+  now = new Date().getTime();
+  _60_seconds_from_now = new Date(now + 60 * 1000);
+  cordova.plugins.notification.local.schedule({
+    id: 1,
+    title: "KiwiPrintsTT Demo Updater",
+    //text: "Checking for an update to KiwiPrintsTT.",
+    text: polyglot.t("checkingForUpdate"),
+    every: 30,
+    at: _60_seconds_from_now,
+    //autoCancel: true,
+    sound: null
+    //}, CoconutUtils.checkVersion());
+  });
+}
+
   CoconutUtils.checkVersion = function () {
     console.log("Checking for new version of app.");
-    var url = Coconut.config.coconut_central_url_with_credentials() + "/version";
-    $.ajax(url, { type: 'GET', dataType: 'json',
+    var url = Coconut.config.coconut_central_url() + "/version";
+    var cloud_credentials = Coconut.config.cloud_credentials();
+    var auth = cloud_credentials.split(":");
+    var username = auth[0];
+    var password = auth[1];
+    $.ajax(url, { type: 'GET', dataType: 'jsonp', username: username, password: password,
       success: function(data) {
         console.log("data: " + JSON.stringify(data));
         var remoteVersion = data.version;
         CoconutUtils.remoteUrl = data.url;
         console.log("Remote version: " + remoteVersion);
-        window.plugins.version.getVersionCode(
-          function(version_code) {
+        if (Coconut.isMobile === true) {
+          window.plugins.version.getVersionCode(
+            function (version_code) {
               console.log("Installed version: " + version_code);
               Coconut.version_code = version_code
-              if(version_code != remoteVersion){
-                  console.log("Upgrade app!");
-                  navigator.notification.beep(3);
-                  navigator.notification.vibrate(2000);
-                  navigator.notification.confirm(
-                      'A new version is out! Get it now!',  // message
-                      CoconutUtils.onVersion,            // callback to invoke with index of button pressed
-                      'Update available',                 // title
-                      ['Update now!', 'Maybe later']     // buttonLabels
-                  );
-                  var log = new Log();
-                  log.save({message: "local version != remote version.", localVersion:version_code, remoteVersion: remoteVersion}, {
-                      success: function() {
-                          console.log("Saved log about update.");
-                      },
-                      error: function(model, err, cb) {
-                          return console.log(JSON.stringify(err));
-                      }
-                  });
+              if (version_code != remoteVersion) {
+                console.log("Upgrade app!");
+                navigator.notification.beep(3);
+                navigator.notification.vibrate(2000);
+                navigator.notification.confirm(
+                  'A new version is out! Get it now!',  // message
+                  CoconutUtils.onVersion,            // callback to invoke with index of button pressed
+                  'Update available',                 // title
+                  ['Update now!', 'Maybe later']     // buttonLabels
+                );
+                var log = new Log();
+                log.save({
+                  message: "local version != remote version.",
+                  localVersion: version_code,
+                  remoteVersion: remoteVersion
+                }, {
+                  success: function () {
+                    console.log("Saved log about update.");
+                  },
+                  error: function (model, err, cb) {
+                    return console.log(JSON.stringify(err));
+                  }
+                });
+              } else {
+                cordova.plugins.notification.local.cancel(1, function () {
+                  console.log("No update. Cancelled notification 1");
+                  CoconutUtils.scheduleCheckVersion()
+                });
               }
-          },
-          function(errorMessage) {
-              console.log("Error while downloading update: " + errorMessage);
-          }
-        );
+            },
+            function (errorMessage) {
+              console.log("Error while checking up update: " + errorMessage);
+            }
+          );
+        }
+      },
+      error: function(model, err, cb) {
+        console.log(JSON.stringify(err));
+        if (Coconut.isMobile === true) {
+          cordova.plugins.notification.local.cancel(1, function () {
+            console.log("No update. Cancelled notification 1");
+            CoconutUtils.scheduleCheckVersion()
+          });
+          window.plugins.version.getVersionCode(
+            function (version_code) {
+              console.log("Installed version: " + version_code);
+              Coconut.version_code = version_code
+            },
+            function (errorMessage) {
+              console.log("Error while checking up update: " + errorMessage);
+            }
+          );
+        }
       }
     });
   }
@@ -97,25 +146,35 @@ CoconutUtils.refreshChart = function (id, name) {
   }
 
 
-  CoconutUtils.saveLog = function(log, title, message, success, error) {
-      if (log == null) {
-          log = new Log();
-      }
-      if (success == null) {
-          success = function() {
-              console.log("Saved log about " + title);
-          };
-      }
-      if (error == null) {
-          error = function() {
-              return console.log(JSON.stringify(err));
-          };
-      }
-      log.save({title:title, message: message}, null, {
-          success: success,
-          error: error
-      });
-  };
+CoconutUtils.saveLog = function(log, title, message, success, error) {
+  if (log == null) {
+    log = new Log();
+  }
+  if (success == null) {
+    success = function() {
+      console.log("Saved log about " + title);
+    };
+  }
+  if (error == null) {
+    error = function() {
+      return console.log(JSON.stringify(err));
+    };
+  }
+
+  var time = moment(new Date()).format();
+
+  var lastModifiedAt = moment(new Date()).format(Coconut.config.get("datetime_format"));
+
+  // sort by age, then gender, then last name, then first name
+  //var id = pouchCollate.toIndexableString(
+  //  [title, district, time]);
+  //var id = title + "_" + district + "_" + time;
+
+  log.save({title:title, message: message}, null, {
+    success: success,
+    error: error
+  });
+};
 
   //kudos: http://stackoverflow.com/questions/11455323/how-to-download-apk-within-phonegap-app
   //http://www.raymondcamden.com/index.cfm/2013/5/1/Using-the-Progress-event-in-PhoneGap-file-transfers
@@ -188,7 +247,7 @@ CoconutUtils.refreshChart = function (id, name) {
 
   CoconutUtils.saveLoginPreferences = function (username, password, site, department) {
     console.log("Saving login prefs. username: " + username + " password: " + password + " site: "  + site + " department:" + department);
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+    if (Coconut.isMobile === true) {
       window.applicationPreferences.set("username", username, function() {
       }, function(error) {
         console.log("Error! " + JSON.stringify(error));
@@ -220,7 +279,7 @@ CoconutUtils.refreshChart = function (id, name) {
 
   CoconutUtils.getLoginPreferences = function () {
     var account = new Object();
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+    if (Coconut.isMobile === true) {
       window.applicationPreferences.get("username", function(value) {
         account.username = value;
       }, function(error) {

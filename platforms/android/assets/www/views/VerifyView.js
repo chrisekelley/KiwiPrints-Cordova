@@ -29,7 +29,7 @@ VerifyView = Backbone.Marionette.ItemView.extend({
     for (key in districtJson) {
       if (!hasProp.call(districtJson, key)) continue;
       phrase = districtJson[key];
-      if (key !== '_id' && key !== '_rev' && key !== 'noClientPush') {
+      if (key !== '_id' && key !== 'id' && key !== '_rev' && key !== 'noClientPush') {
         index++;
         district = {
           id: key,
@@ -55,6 +55,11 @@ VerifyView = Backbone.Marionette.ItemView.extend({
     this.scan(e, "Identify", "Individual");
   },
   identifyAdmin: function(e) {
+    var district;
+    district = $('#District').val();
+    if (district === '') {
+      return alert(polyglot.t("districtRequired"));
+    }
     this.scan(e, "Identify", "Admin");
   },
   scan: function(event, method, user) {
@@ -158,7 +163,9 @@ VerifyView = Backbone.Marionette.ItemView.extend({
                 prints = [];
                 prints.push(fingerprint);
                 Coconut.currentPrints = prints;
-                Coconut.currentDistrict = district;
+                if (typeof district !== 'undefined') {
+                  Coconut.currentDistrict = district;
+                }
                 urlServer = Coconut.config.get("AfisServerUrl") + Coconut.config.get("AfisServerUrlFilepath") + "Identify";
                 timeout = Coconut.config.get("networkTimeout");
                 if (typeof Coconut.networkTimeout !== 'undefined') {
@@ -198,11 +205,12 @@ VerifyView = Backbone.Marionette.ItemView.extend({
                         });
                         adminRegdropdown = adminRegdropdown + "\t</select>\n</div>\n";
                         if (user === 'Admin') {
-                          message = polyglot.t("errorUploadingScan") + ": " + xhr.statusText + " . " + polyglot.t("offlineScanContinueAdmin") + adminRegdropdown;
+                          message = polyglot.t("errorUploadingScan") + ": " + xhr.statusText + " . " + polyglot.t("offlineScanContinueAdmin");
+                          $("#uploadFailedMessage").html(message + adminRegdropdown);
                         } else {
                           message = polyglot.t("errorUploadingScan") + ": " + xhr.statusText + " . " + polyglot.t("offlineScanContinueNewPatient");
+                          $("#uploadFailedMessage").html(message);
                         }
-                        $("#uploadFailedMessage").html(message);
                         $("#uploadFailed").css({
                           "display": "block"
                         });
@@ -309,7 +317,7 @@ VerifyView = Backbone.Marionette.ItemView.extend({
           } else {
             i = 1;
             interval = setInterval(function() {
-              var adminRegCollection, adminRegdropdown, district, serviceUuid, uuid, viewOptions;
+              var district, serviceUuid, uuid;
               if (i === 5) {
                 uuid = CoconutUtils.uuidGenerator(30);
                 serviceUuid = CoconutUtils.uuidGenerator(30);
@@ -325,35 +333,24 @@ VerifyView = Backbone.Marionette.ItemView.extend({
                   "Finger": 1,
                   "Key": "HH8XGFYSDU9QGZ833"
                 };
-                viewOptions = {};
-                adminRegdropdown = "";
-                adminRegCollection = new SecondaryIndexCollection;
-                adminRegCollection.fetch({
-                  fetch: 'query',
-                  options: {
-                    query: {
-                      include_docs: true,
-                      fun: 'by_AdminRegistration'
-                    }
-                  },
-                  success: function() {
-                    console.log("Retrieved Admin registrations: " + JSON.stringify(adminRegCollection));
-                    adminRegdropdown = "\n<div class=\"form-group\">\n\t<select id=\"forDropdown\" class=\"form-control\">\n<option value=\"\"> -- " + polyglot.t("SelectOne") + " -- </option>\n";
-                    adminRegCollection.each(function(adminReg) {
-                      var id, name, option;
-                      id = adminReg.get("_id");
-                      name = adminReg.get("Name");
-                      option = "<option value=\"" + id + "\">" + name + "</option>\n";
-                      return adminRegdropdown = adminRegdropdown + option;
-                    });
-                    adminRegdropdown = adminRegdropdown + "\t</select>\n</div>";
-                    console.log("adminRegdropdown" + adminRegdropdown);
-                    return $("#uploadFailedMessage").html(adminRegdropdown);
-                  },
-                  error: function(model, err, cb) {
-                    return console.log(JSON.stringify(err));
-                  }
+                Coconut.currentClient = new Result({
+                  _id: uuid,
+                  serviceUuid: serviceUuid
                 });
+                $("#message").html("Scanning complete!");
+                if (user === "Admin") {
+                  Coconut.currentAdmin = Coconut.currentClient;
+                }
+                CoconutUtils.setSession('currentAdmin', Coconut.scannerPayload.email);
+                l.stop();
+                if (_this.nextUrl != null) {
+                  Coconut.router.navigate(_this.nextUrl, true);
+                } else {
+                  Coconut.router.navigate("registration", true);
+                  window.setTimeout(function() {
+                    return Coconut.router.navigate("registration");
+                  }, 2000);
+                }
                 clearInterval(interval);
               }
               return i++;

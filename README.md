@@ -25,19 +25,22 @@ Use platforms/android/bakeapp.sh to refresh the plugin when you change it.
 
 ## Installing plugins from scratch
 
-cordova plugin add org.apache.cordova.device
-cordova plugin add org.apache.cordova.vibration
-cordova plugin add org.apache.cordova.dialogs
-cordova plugin add org.apache.cordova.file-transfer
-cordova plugin add org.apache.cordova.geolocation
-cordova plugin add org.apache.cordova.network-information
-cordova plugin add https://github.com/chrisekelley/Version.git
-cordova plugin add com.scispike.logger
-cordova plugin add org.apache.cordova.file
-cordova plugin add https://github.com/Initsogar/cordova-webintent.git
-cordova plugin add /Users/chrisk/source/SecugenPlugin 
-cordova plugin add de.appplant.cordova.plugin.local-notification && cordova prepare
+    cordova plugin add org.apache.cordova.device
+    cordova plugin add org.apache.cordova.vibration
+    cordova plugin add org.apache.cordova.dialogs
+    cordova plugin add org.apache.cordova.file-transfer
+    cordova plugin add org.apache.cordova.geolocation
+    cordova plugin add org.apache.cordova.network-information
+    cordova plugin add https://github.com/chrisekelley/Version.git
+    cordova plugin add com.scispike.logger
+    cordova plugin add org.apache.cordova.file
+    cordova plugin add https://github.com/Initsogar/cordova-webintent.git
+    cordova plugin add /Users/chrisk/source/SecugenPlugin 
+    cordova plugin add de.appplant.cordova.plugin.local-notification && cordova prepare
 
+If you need to cleanup old versions of the app that had a different package, add "Uninstall Android Application from Cordova" plugin:
+
+    cordova plugin add https://github.com/chrisekelley/pman 
 ## Create a soft link to the coconut code
 
 Clone https://github.com/chrisekelley/coconut
@@ -52,6 +55,13 @@ In CouchDB Futon, clone the following, using a new name for the new db's:
  Create a new couch for the data
  
  Modify the forms and adjust the urls in coconut-central-newdb/coconut.config and reset coconut-central-newdb/version
+
+## Payloads to and from the Scaning Service
+
+Payload sent to service:
+{"Key":"keyFromSerivce","Name":"Kiwi-Test","Template":"TEMPLATE_FORMAT_ISO19794","Finger":"1","District":"DistrictA"}
+
+response from service: {"UID":"36 character UUID","Name":"Kiwi-Moz-01-2015","Finger":0,"Threshold":30,"StatusCode":1,"Error":null}
 
 ## Fingerprint Scanning Service Codes:
 
@@ -108,6 +118,16 @@ kudos: http://stackoverflow.com/a/9869609
 
 https://github.com/AlexDisler/cordova-icon
 
-Save icon.png in project root. Save as 192x192. Run cordova-icon. 
+install:  
+
+    npm install -g cordova-icon  
+
+Save icon.png in project root. Save as 512x512. Run cordova-icon. It installs icons in platforms/android/res/ for the folllowing resolutions:
+            { name : 'drawable/icon.png',       size : 96 },
+            { name : 'drawable-hdpi/icon.png',  size : 72 },
+            { name : 'drawable-ldpi/icon.png',  size : 36 },
+            { name : 'drawable-mdpi/icon.png',  size : 48 },
+            { name : 'drawable-xhdpi/icon.png', size : 96 },
+            { name : 'drawable-xxhdpi/icon.png', size : 144 },
 
 

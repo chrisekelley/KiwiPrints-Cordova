@@ -588,6 +588,7 @@ Router = (function(superClass) {
   };
 
   Router.prototype.bootstrapApp = function() {
+    console.log("bootstrapping app.");
     Controller.displaySiteNav();
     Coconut.config = new Config();
     return Coconut.config.fetch({
@@ -655,8 +656,16 @@ Router = (function(superClass) {
     Coconut.syncView.sync.replicateToServer();
     Coconut.syncView.sync.replicateFromServer();
     Backbone.history.start();
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-      return CoconutUtils.checkVersion();
+    if (Coconut.isMobile === true) {
+      CoconutUtils.scheduleCheckVersion();
+      cordova.plugins.notification.local.on("trigger", function(notification) {
+        console.log("triggered: " + notification.id);
+        return CoconutUtils.checkVersion();
+      });
+      return cordova.plugins.notification.local.on("click", function(notification) {
+        console.log("click: " + notification.id);
+        return CoconutUtils.scheduleCheckVersion();
+      });
     }
   };
 
@@ -682,8 +691,18 @@ $((function(_this) {
       return $("#statusIcons").html('<img src="images/connection-up.png"/>');
     };
     onDeviceReady = function() {
-      var matchResults;
-      if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+      var appPackage, placeholder;
+      if (typeof window.Coconut !== 'undefined') {
+        placeholder = {};
+        _.extend(placeholder, Coconut);
+        window.Coconut = new Marionette.Application();
+        window.Coconut = _.extend(window.Coconut, placeholder);
+        console.log("extending Coconut");
+      } else {
+        window.Coconut = new Marionette.Application();
+        console.log("init new Coconut");
+      }
+      if (Coconut.isMobile === true) {
         console.log("Init Secugen: this wheel is on fire.");
         cordova.plugins.SecugenPlugin.requestPermission(function(results) {
           return console.log("SecugenPlugin requestPermission: " + results);
@@ -697,22 +716,23 @@ $((function(_this) {
             return alert(message);
           }
         });
+        appPackage = "org.rti.kidsthrive";
+        pman.query(appPackage, function() {
+          console.log(appPackage + " exists");
+          return pman.uninstall(appPackage, function() {
+            return console.log("Uninstalling " + appPackage);
+          }, function(message) {
+            return console.log("Problem Uninstalling " + appPackage + " Error: " + message);
+          });
+        }, function(message) {
+          return console.log(appPackage + " does not exist. No need to uninstall.  " + message);
+        });
       }
-      window.Coconut = new Marionette.Application();
-      matchResults = document.location.pathname.match(/^\/(.*)\/_design\/(.*?)\//);
-      if (matchResults === null) {
-        console.log('Configuring for Pouchdb');
-        Coconut.db_name = 'coconut';
-        Coconut.ddoc_name = 'coconut';
-      } else {
-        Coconut.db_name = matchResults[1];
-        Coconut.ddoc_name = matchResults[2];
-      }
-      Coconut.Controller = Controller;
-      Coconut.API = API;
-      Coconut.router = new Router();
-      Coconut.currentClient = null;
-      Coconut.currentAdmin = null;
+      window.Coconut.currentClient = null;
+      window.Coconut.currentAdmin = null;
+      window.Coconut.Controller = Controller;
+      window.Coconut.API = API;
+      window.Coconut.router = new Router();
       Coconut.currentPosition = null;
       Coconut.currentPositionError = null;
       Coconut.addRegions({
@@ -774,7 +794,7 @@ $((function(_this) {
         return Coconut.replicationLog += string;
       };
     };
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+    if (Coconut.isMobile === true) {
       console.log("listening for deviceready event.");
       document.addEventListener("deviceready", onDeviceReady, false);
       document.addEventListener("offline", onOffline, false);

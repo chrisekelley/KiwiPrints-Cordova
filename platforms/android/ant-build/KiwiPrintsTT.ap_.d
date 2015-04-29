@@ -165,7 +165,9 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/moment.min.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/phonegap-loader.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/picnet.table.filter.min.js \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/pman.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/polyglot.js \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/pouchdb-collate.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/pouchdb.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/raphael-min.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/js/recordElementRender.js \
@@ -226,12 +228,15 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.plugin.version \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.iwanjunaid.pman \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.rti.kidsthrive.secugen \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.borismus.webintent/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.borismus.webintent/www/webintent.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.scispike.logger/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/com.scispike.logger/www/logger.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-core.js \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www/local-notification-util.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
@@ -272,6 +277,8 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.plugin.version/www/version.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www/vibration.js \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.iwanjunaid.pman/www \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.iwanjunaid.pman/www/pman.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.rti.kidsthrive.secugen/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/plugins/org.rti.kidsthrive.secugen/www/SecugenPlugin.js \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/query/pouchdb_views.js \

@@ -162,9 +162,31 @@ this["JST"]["_attachments/templates/ScanVerifyView.handlebars"] = Handlebars.tem
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"consentProceed",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</h3>\n<p>"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"scanInstructions",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</p>\n<p>"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"scanFingerInstructions",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</p>\n<p>\n    <label for=\"Finger\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"Finger",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
-    + "</label>\n    <select id=\"Finger\" name=\"Finger\">\n        <option value=\"0\">Null</option>\n        <option value=\"6\">L1</option>\n        <option value=\"7\">L2</option>\n        <option value=\"8\">L3</option>\n        <option value=\"9\">L4</option>\n        <option value=\"10\">L5</option>\n        <option selected=\"selected\" value=\"1\">R1</option>\n        <option value=\"2\">R2</option>\n        <option value=\"3\">R3</option>\n        <option value=\"4\">R4</option>\n        <option value=\"5\">R5</option>\n    </select>\n    <a data-role=\"button\" id=\"identifyIndividual\" class=\"btn btn-primary btn-lg ladda-button\" data-style=\"expand-right\"><span class=\"ladda-label\">Scan</span></a>\n    <div id=\"uploadFailed\">\n        <p id=\"uploadFailedMessage\"></p>\n        <a data-role=\"button\" id=\"continueAfterFail\" class=\"btn btn-primary btn-lg ladda-button\" data-style=\"expand-right\"><span class=\"ladda-label\">"
+    + "</label>\n    <select id=\"Finger\" name=\"Finger\">\n        <option value=\"0\">Null</option>\n        <option value=\"6\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L1",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"7\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L2",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"8\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L3",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"9\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L4",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"10\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L5",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option selected=\"selected\" value=\"1\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R1",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"2\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R2",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"3\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R3",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"4\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R4",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"5\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R5",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n    </select>\n    <a data-role=\"button\" id=\"identifyIndividual\" class=\"btn btn-primary btn-lg ladda-button\" data-style=\"expand-right\"><span class=\"ladda-label\">Scan</span></a>\n    <div id=\"uploadFailed\">\n        <p id=\"uploadFailedMessage\"></p>\n        <a data-role=\"button\" id=\"continueAfterFail\" class=\"btn btn-primary btn-lg ladda-button\" data-style=\"expand-right\"><span class=\"ladda-label\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"Continue",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</span></a>\n    </div>\n</p>\n\n<div id=\"message\"></div>\n\n<p>"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"scanSendLogs",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
@@ -202,7 +224,9 @@ this["JST"]["_attachments/templates/UserReportMenu.handlebars"] = Handlebars.tem
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"newReport",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</h1>\n\n<div role=\"heading\">\n    <legend>"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"ClickFormName",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
-    + "</legend>\n</div>\n\n<table>\n    <tr>\n        <td colspan=\"2\"><a data-role=\"button\" id=\"TrichiasisSurgery\" class=\"btn btn-primary btn-lg\" href=\"#new/result/Trichiasis%20Surgery\">"
+    + "</legend>\n</div>\n\n<table id=\"kiwiFormTable\">\n    <tr>\n        <th colspan=\"2\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"Initial Visit",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</th>\n    </tr>\n    <tr>\n        <td colspan=\"2\"><a data-role=\"button\" id=\"TrichiasisSurgery\" class=\"btn btn-primary btn-lg\" href=\"#new/result/Trichiasis%20Surgery\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"trichiasisSurgery",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</a></td>\n    </tr>\n    <tr>\n        <th colspan=\"2\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"Post-Operative Visits",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
@@ -232,9 +256,33 @@ this["JST"]["_attachments/templates/VerifyView.handlebars"] = Handlebars.templat
 
   return "<p>"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"verifyAdmin",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</p>\n<p>"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"scanFingerInstructions",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</p>\n<p>"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"fingerSelectInstructions",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</p>\n<p>\n    <label for=\"Finger\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"Finger",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
-    + "</label>\n    <select id=\"Finger\" name=\"Finger\">\n        <option value=\"0\">Null</option>\n        <option value=\"6\">L1</option>\n        <option value=\"7\">L2</option>\n        <option value=\"8\">L3</option>\n        <option value=\"9\">L4</option>\n        <option value=\"10\">L5</option>\n        <option selected=\"selected\" value=\"1\">R1</option>\n        <option value=\"2\">R2</option>\n        <option value=\"3\">R3</option>\n        <option value=\"4\">R4</option>\n        <option value=\"5\">R5</option>\n    </select>\n    <br/>\n    <label for=\"District\">"
+    + "</label>\n    <select id=\"Finger\" name=\"Finger\">\n        <option value=\"0\">Null</option>\n        <option value=\"6\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L1",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"7\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L2",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"8\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L3",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"9\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L4",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"10\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"L5",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option selected=\"selected\" value=\"1\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R1",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"2\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R2",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"3\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R3",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"4\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R4",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n        <option value=\"5\">"
+    + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"R5",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
+    + "</option>\n    </select>\n    <br/>\n    <label for=\"District\">"
     + ((stack1 = (helpers.polyglot || (depth0 && depth0.polyglot) || alias1).call(depth0,"District",{"name":"polyglot","hash":{},"data":data})) != null ? stack1 : "")
     + "</label>\n\n    <select id=\"District\" name=\"District\">\n        <option value=\"\"> -- </option>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.districts : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")

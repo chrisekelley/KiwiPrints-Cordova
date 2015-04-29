@@ -12,5 +12,19 @@
             "url": "https://github.com/jorgecis/ShortcutPlugin.git",
             "subdir": "."
         }
+    },
+    "com.iwanjunaid.pman": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/chrisekelley/pman",
+            "subdir": "."
+        }
+    },
+    "org.iwanjunaid.pman": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/chrisekelley/pman",
+            "subdir": "."
+        }
     }
 }

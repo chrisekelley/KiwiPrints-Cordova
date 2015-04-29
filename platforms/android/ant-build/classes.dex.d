@@ -101,6 +101,7 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/networkinformation/NetworkManager.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/plugin/version/Version.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/apache/cordova/vibration/Vibration.class \
+/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/iwanjunaid/pman/PMan.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/rti/kidsthrive/secugenplugin/ScanProperties.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/rti/kidsthrive/secugenplugin/SecugenPlugin$1.class \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/classes/org/rti/kidsthrive/secugenplugin/SecugenPlugin$2.class \
