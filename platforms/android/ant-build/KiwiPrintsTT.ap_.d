@@ -13,7 +13,6 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-port-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xxhdpi/icon.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/drawable-xxxhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/values/strings.xml \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/xml/config.xml \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/res/xml/device_filter.xml \
@@ -31,7 +30,6 @@
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xxhdpi/icon.png \
-/Users/chrisk/source/KiwiPrints-Cordova/platforms/android/ant-build/res/drawable-xxxhdpi/icon.png \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/_where-is-www.txt \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www \
 /Users/chrisk/source/KiwiPrints-Cordova/platforms/android/assets/www/api.coffee \
