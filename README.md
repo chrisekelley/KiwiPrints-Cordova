@@ -120,7 +120,9 @@ https://github.com/AlexDisler/cordova-icon
 
 install:  
 
-    npm install -g cordova-icon  
+    npm install -g AlexDisler/cordova-icon
+    
+This version is directly from the developer's website - the one on NPM does not generate xxhdpi icons.
 
 Save icon.png in project root. Save as 512x512. Run cordova-icon. It installs icons in platforms/android/res/ for the folllowing resolutions:
             { name : 'drawable/icon.png',       size : 96 },
